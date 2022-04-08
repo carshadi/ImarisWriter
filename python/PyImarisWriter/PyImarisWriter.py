@@ -350,7 +350,7 @@ class ImageConverter(PyClassnameExceptionRaiser):
     def _load_dll(self):
         dll_filename = self._get_dll_filename()
         try:
-            self.mcdll = CDLL(dll_filename)
+            self.mcdll = CDLL(os.path.join(os.path.dirname(__file__), dll_filename))
         except OSError as error:
             text = 'Could not load library "{}" (with dependencies hdf5 and zlib)\n'.format(dll_filename)
             text += 'Please make sure the library is available and in the PATH environment variable\n{}'.format(error)
